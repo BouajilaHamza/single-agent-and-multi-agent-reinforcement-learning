@@ -1,4 +1,4 @@
-Excellent! Let's now move to the **main algorithms** used in **single-agent reinforcement learning**, focusing on:
+**main algorithms** used in **single-agent reinforcement learning**, focusing on:
 
 * 📌 **Definitions**
 * 🧠 **Intuition**
