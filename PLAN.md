@@ -10,10 +10,22 @@
 ## Task List
 - [x] Create project directory and initialize documentation (README.md)
 - [x] Document single-agent and multi-agent RL theory in README.md
-- [ ] Implement and run a PettingZoo environment (e.g., pistonball, simple_spread)
-- [ ] Tweak the environment or agent parameters and record observations
-- [ ] Document the code changes, experiments, and findings in the repo (README or separate file)
-- [ ] Summarize lessons learned and next steps for Week 2
+
+### Single-Agent RL
+- [ ] Implement a basic single-agent environment (e.g., CartPole, LunarLander)
+- [ ] Train a PPO agent using Stable Baselines3
+- [ ] Evaluate and document the agent's performance
+- [ ] Tweak hyperparameters and document observations
+
+### Multi-Agent RL
+- [ ] Implement a PettingZoo environment (e.g., pistonball, simple_spread)
+- [ ] Train agents using a multi-agent algorithm
+- [ ] Evaluate and document the agents' performance
+- [ ] Tweak environment or agent parameters and record observations
+
+### Documentation & Next Steps
+- [ ] Document all code changes, experiments, and findings
+- [ ] Summarize lessons learned and next steps for future work
 
 ## Current Goal
 Implement and run a PettingZoo environment
