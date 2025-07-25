@@ -14,20 +14,20 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Config
-alpha = 0.01 #learning rate
-gamma = 0.99 #discount factor 
-epsilon = 0.05 #exploration rate: probability of taking a random action
-episodes = 100000 #number of episodes : episode is a sequence of states, actions, and rewards
 
-# Environment
+alpha = 0.1
+gamma = 0.99
+epsilon = 0.1
+episodes = 1000
+
+
 env = gym.make("FrozenLake-v1", is_slippery=True)
 n_states = env.observation_space.n #getting number of states from environment why ? because environment is frozen lake thus it has 16 states
 n_actions = env.action_space.n #getting number of actions from environment why ? because environment is frozen lake thus it has 4 actions
 
 Q = np.zeros((n_states, n_actions)) 
 
-# MLflow setup
+
 mlflow.start_run()
 mlflow.log_params({"alpha": alpha, "gamma": gamma, "epsilon": epsilon})
 
@@ -48,7 +48,7 @@ def evaluate(Q, n_episodes=100):
             total_reward += r
     return total_reward / n_episodes
 
-# Training
+
 for ep in range(episodes):
     s, _ = env.reset()
     done = False
@@ -72,7 +72,20 @@ for ep in range(episodes):
         avg_reward = evaluate(Q)
         mlflow.log_metric("avg_reward", avg_reward, step=ep)
 
-# Save final Q-table
+
 np.save("Q_table.npy", Q)
 mlflow.log_artifact("Q_table.npy")
 mlflow.end_run()
+
+best_actions = np.argmax(Q, axis=1).reshape(4,4)
+# visualize heatmap + arrows...
+
+# To play with trained policy:
+Q = np.load("Q_table.npy")
+state, _ = env.reset()
+done = False
+while not done:
+    action = np.argmax(Q[state])
+    state, r, done, _, _ = env.step(action)
+    env.render()
+
